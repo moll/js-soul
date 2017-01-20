@@ -49,8 +49,8 @@ describe("Soul", function() {
       Soul.call(model, {name: "John", age: 42})
 
       onChange.callCount.must.equal(1)
-      onChange.firstCall.args[0].must.eql({name: "John", age: 42})
-      onChange.firstCall.args[1].must.eql({name: undefined})
+      onChange.firstCall.args[0].must.eql({name: undefined})
+      onChange.firstCall.args[1].must.eql({name: "John", age: 42})
     })
 
     it("must not trigger change if nothing changed", function() {
@@ -136,8 +136,8 @@ describe("Soul", function() {
       model.set({name: "John", age: 42})
 
       onChange.callCount.must.equal(1)
-      onChange.firstCall.args[0].must.eql({name: "John", age: 42})
-      onChange.firstCall.args[1].must.eql({name: undefined})
+      onChange.firstCall.args[0].must.eql({name: undefined})
+      onChange.firstCall.args[1].must.eql({name: "John", age: 42})
     })
 
     it("must not trigger change if nothing changed", function() {

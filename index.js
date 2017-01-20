@@ -27,11 +27,11 @@ Soul.prototype.set = function(key, value) {
   if (typeof key !== "object") (attrs = {})[key] = value
   else attrs = key
 
-  var prev = diff(this, attrs)
-  if (isEmpty(prev)) return this
+  var old = diff(this, attrs)
+  if (isEmpty(old)) return this
 
   assign(this, attrs)
-  this.trigger("change", attrs, prev)
+  this.trigger("change", old, attrs)
   return this
 }
 
@@ -42,9 +42,9 @@ Soul.prototype.toJSON = function() { return reject(this, isUndefined) }
 unenumerate(Soul.prototype)
 
 function diff(a, b) {
-  var prev = {}
-  for (var key in b) if (!(key in a && egal(a[key], b[key]))) prev[key] = a[key]
-  return prev
+  var old = {}
+  for (var key in b) if (!(key in a && egal(a[key], b[key]))) old[key] = a[key]
+  return old
 }
 
 function unenumerate(obj) {
