@@ -35,7 +35,8 @@
 	"dependencies": {
 		"concert": ">= 2.0.0 < 3",
 		"egal": ">= 1.0.0 < 2",
-		"oolong": ">= 1.15.1 < 2"
+		"oolong": ">= 1.15.1 < 2",
+		"lodash.compose": ">= 2 < 3"
 	},
 
 	"devDependencies": {
