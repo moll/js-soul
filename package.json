@@ -1,0 +1,46 @@
+{
+	"name": "@moll/soul",
+	"version": "0.0.0",
+	"description": "",
+	"keywords": [
+		"domain",
+		"model",
+		"orm",
+		"inactive record",
+		"enterprise",
+		"architecture"
+	],
+	"homepage": "https://github.com/moll/js-soul",
+	"bugs": "https://github.com/moll/js-soul/issues",
+
+	"author": {
+		"name": "Andri Möll",
+		"email": "andri@dot.ee",
+		"url": "http://themoll.com"
+	},
+
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/moll/js-soul.git"
+	},
+
+	"licenses" : [{
+		"type": "LAGPL",
+		"url": "https://github.com/moll/js-soul/blob/master/LICENSE"
+	}],
+
+	"main": "index.js",
+	"scripts": {"test": "make test"},
+
+	"dependencies": {
+		"concert": ">= 2.0.0 < 3",
+		"egal": ">= 1.0.0 < 2",
+		"oolong": ">= 1.15.1 < 2"
+	},
+
+	"devDependencies": {
+		"mocha": ">= 2.5.3 < 3",
+		"must": ">= 0.13.2 < 0.14",
+		"sinon": ">= 1.9 < 2"
+	}
+}
