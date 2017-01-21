@@ -8,7 +8,7 @@ var NON_ENUMERABLE = {enumerable: false}
 module.exports = Soul
 
 function Soul(attrs) {
-  if (typeof attrs === "object") this.set(attrs)
+  if (attrs !== undefined) this.set(attrs)
 }
 
 Soul.prototype.on = Concert.prototype.on
@@ -20,18 +20,12 @@ Soul.prototype.get = function(key) {
   return this[key]
 }
 
-Soul.prototype.set = function(key, value) {
-  if (key == null) throw new TypeError("Attributes must be an object: " + key)
-
-  var attrs
-  if (typeof key !== "object") (attrs = {})[key] = value
-  else attrs = key
+Soul.prototype.set = function(attrs) {
+  if (attrs == null || typeof attrs !== "object")
+    throw new TypeError("Attributes must be an object: " + attrs)
 
   var old = diff(this, attrs)
-  if (isEmpty(old)) return this
-
-  assign(this, attrs)
-  this.trigger("change", old, attrs)
+  if (!isEmpty(old)) assign(this, attrs).trigger("change", old, attrs)
   return this
 }
 

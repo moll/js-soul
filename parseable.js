@@ -18,18 +18,17 @@ module.exports = function(Soul) {
   return Parseable
 }
 
-exports.set = function(key, value) {
-  return this.parse(key, value)
+exports.set = function(attrs) {
+  return this.parse(attrs)
 }
 
-exports.parse = function parse(key, value) {
-  var attrs
-  if (typeof key !== "object") (attrs = {})[key] = value
-  else attrs = key
+exports.parse = function parse(attrs) {
+  if (attrs == null || typeof attrs !== "object")
+    throw new TypeError("Attributes must be an object: " + attrs)
 
   attrs = Object.create(attrs)
 
-  for (key in attrs) {
+  for (var key in attrs) {
     var name = "set " + key
     if (name in this) attrs[key] = this[name](attrs[key])
   }

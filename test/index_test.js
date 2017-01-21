@@ -13,6 +13,18 @@ describe("Soul", function() {
       new Soul().must.be.empty()
     })
 
+    it("must throw TypeError given null", function() {
+      var err
+      try { new Soul(null) } catch (ex) { err = ex }
+      err.must.be.an.error(TypeError, /attributes/i)
+    })
+
+    it("must throw TypeError given a string", function() {
+      var err
+      try { new Soul("name") } catch (ex) { err = ex }
+      err.must.be.an.error(TypeError, /attributes/i)
+    })
+
     it("must set given attributes", function() {
       var model = new Soul({name: "John", age: 42})
       model.get("name").must.equal("John")
@@ -113,17 +125,23 @@ describe("Soul", function() {
     it("must throw TypeError given undefined", function() {
       var err
       try { new Soul().set(undefined) } catch (ex) { err = ex }
-      err.must.be.an.error(TypeError)
+      err.must.be.an.error(TypeError, /attributes/i)
     })
 
     it("must throw TypeError given null", function() {
       var err
       try { new Soul().set(null) } catch (ex) { err = ex }
-      err.must.be.an.error(TypeError)
+      err.must.be.an.error(TypeError, /attributes/i)
+    })
+
+    it("must throw TypeError given a string", function() {
+      var err
+      try { new Soul().set("name", "John") } catch (ex) { err = ex }
+      err.must.be.an.error(TypeError, /attributes/i)
     })
 
     it("must set undefined attribute if not set before", function() {
-      var model = new Soul().set("name", undefined)
+      var model = new Soul().set({name: undefined})
       model.must.have.property("name", undefined)
     })
 
@@ -154,7 +172,7 @@ describe("Soul", function() {
     it("must not throw TypeError when changing a nonextensible object",
       function() {
       var model = Object.preventExtensions(new Soul({name: null}))
-      model.set("name", "John")
+      model.set({name: "John"})
       model.name.must.equal("John")
     })
 
@@ -162,35 +180,23 @@ describe("Soul", function() {
       function() {
       var model = Object.preventExtensions(new Soul({name: null}))
       var err
-      try { model.set("age", 13) } catch (ex) { err = ex }
+      try { model.set({age: 13}) } catch (ex) { err = ex }
       err.must.be.an.error(TypeError, /not extensible/i)
       model.must.not.have.property("age")
     })
 
     it("must not throw TypeError when changing a sealed object", function() {
       var model = Object.seal(new Soul({name: null}))
-      model.set("name", "John")
+      model.set({name: "John"})
       model.name.must.equal("John")
     })
 
     it("must throw TypeError when adding to a sealed object", function() {
       var model = Object.seal(new Soul({name: null}))
       var err
-      try { model.set("age", 13) } catch (ex) { err = ex }
+      try { model.set({age: 13}) } catch (ex) { err = ex }
       err.must.be.an.error(TypeError, /not extensible/i)
       model.must.not.have.property("age")
-    })
-
-    describe("given name and value", function() {
-      it("must return self", function() {
-        var soul = new Soul
-        soul.set("life", 42).must.equal(soul)
-      })
-
-      it("must set property to value", function() {
-        var soul = new Soul().set("life", 42)
-        soul.must.eql(new Soul({life: 42}))
-      })
     })
 
     describe("given object", function() {
