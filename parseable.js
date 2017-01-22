@@ -29,7 +29,7 @@ exports.parse = function parse(attrs) {
   attrs = Object.create(attrs)
 
   for (var key in attrs) {
-    var name = "set " + key
+    var name = "parse " + key
     if (name in this) attrs[key] = this[name](attrs[key])
   }
 

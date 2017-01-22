@@ -40,8 +40,8 @@ describe("Parseable", function() {
 
     it("must call parsers", function() {
       var model = new Model
-      model["set name"] = function(name) { return name + "!" }
-      model["set age"] = function(age) { return age * 2 }
+      model["parse name"] = function(name) { return name + "!" }
+      model["parse age"] = function(age) { return age * 2 }
 
       model.set({name: "John", age: 21})
       model.name.must.equal("John!")
@@ -50,9 +50,9 @@ describe("Parseable", function() {
 
     it("must call parser in the context of the model", function() {
       var model = new Model
-      model["set name"] = Sinon.spy()
+      model["parse name"] = Sinon.spy()
       model.set({name: "John"})
-      model["set name"].thisValues[0].must.equal(model)
+      model["parse name"].thisValues[0].must.equal(model)
     })
   })
 })
