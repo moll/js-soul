@@ -54,5 +54,13 @@ describe("Parseable", function() {
       model.set({name: "John"})
       model["parse name"].thisValues[0].must.equal(model)
     })
+
+    it("must not modify given attributes", function() {
+      var model = new Model
+      model["parse name"] = function(name) { return name + "!" }
+      var attrs = {name: "John"}
+      model.set(attrs)
+      attrs.must.eql({name: "John"})
+    })
   })
 })
