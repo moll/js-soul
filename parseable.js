@@ -1,3 +1,4 @@
+var create = Object.create
 var compose = require("lodash.compose")
 
 module.exports = function(Soul) {
@@ -25,7 +26,7 @@ function parse(attrs) {
   if (attrs == null || typeof attrs !== "object")
     throw new TypeError("Attributes must be an object: " + attrs)
 
-  attrs = Object.create(attrs)
+  attrs = create(attrs)
 
   for (var key in attrs) {
     var name = "parse " + key
