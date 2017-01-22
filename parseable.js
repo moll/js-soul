@@ -1,4 +1,3 @@
-"use strict"
 var compose = require("lodash.compose")
 
 module.exports = function(Soul) {
