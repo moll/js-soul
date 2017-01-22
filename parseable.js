@@ -26,12 +26,10 @@ function parse(attrs) {
   if (attrs == null || typeof attrs !== "object")
     throw new TypeError("Attributes must be an object: " + attrs)
 
-  attrs = create(attrs)
-
-  for (var key in attrs) {
-    var name = "parse " + key
-    if (name in this) attrs[key] = this[name](attrs[key])
+  var parsed, parser
+  for (var key in attrs) if ((parser = "parse " + key) in this) {
+    (parsed || (parsed = create(attrs)))[key] = this[parser](attrs[key])
   }
 
-  return attrs
+  return parsed || attrs
 }
