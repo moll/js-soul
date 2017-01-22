@@ -1,9 +1,24 @@
+var Soul = require("..")
 var Sinon = require("sinon")
 var Parseable = require("../parseable")
 var mix = require("../mix")
-var Model = mix(require(".."), Parseable)
+var Model = mix(Soul, Parseable)
 
 describe("Parseable", function() {
+  describe("new", function() {
+    it("must be an instance of Soul", function() {
+      new Model().must.be.an.instanceof(Soul)
+    })
+
+    it("must be an instance of Parseable", function() {
+      new Model().must.be.an.instanceof(Model)
+    })
+
+    it("must be empty by defualt", function() {
+      new Model().must.be.empty()
+    })
+  })
+
   describe(".prototype.set", function() {
     it("must throw TypeError given undefined", function() {
       var err
