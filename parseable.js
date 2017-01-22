@@ -1,7 +1,7 @@
 var compose = require("lodash.compose")
 
 module.exports = function(Soul) {
-  function Parseable() { Soul.apply(this, arguments) }
+  function Parseable() { return Soul.apply(this, arguments) }
 
   Parseable.prototype = Object.create(Soul.prototype, {
     constructor: {value: Parseable, configurable: true, writeable: true},
