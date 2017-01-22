@@ -18,7 +18,7 @@ module.exports = function(Soul) {
   return Parseable
 }
 
-exports.set = function(attrs) {
+exports.set = function set(attrs) {
   return this.parse(attrs)
 }
 
