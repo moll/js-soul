@@ -6,10 +6,10 @@ module.exports = function(Soul) {
 
   Parseable.prototype = Object.create(Soul.prototype, {
     constructor: {value: Parseable, configurable: true, writeable: true},
-    parse: {value: exports.parse, configurable: true, writeable: true},
+    parse: {value: parse, configurable: true, writeable: true},
 
     set: {
-      value: compose(Soul.prototype.set, exports.set),
+      value: compose(Soul.prototype.set, set),
       configurable: true,
       writeable: true
     }
@@ -18,11 +18,11 @@ module.exports = function(Soul) {
   return Parseable
 }
 
-exports.set = function set(attrs) {
+function set(attrs) {
   return this.parse(attrs)
 }
 
-exports.parse = function parse(attrs) {
+function parse(attrs) {
   if (attrs == null || typeof attrs !== "object")
     throw new TypeError("Attributes must be an object: " + attrs)
 
