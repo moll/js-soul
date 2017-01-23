@@ -140,8 +140,24 @@ describe("Soul", function() {
       err.must.be.an.error(TypeError, /attributes/i)
     })
 
-    it("must set undefined attribute if not set before", function() {
-      var model = new Soul().set({name: undefined})
+    it("must set attributes and return old", function() {
+      var model = new Soul({life: 32, death: 31, existence: true})
+      model.set({life: 42, death: 69}).must.eql({life: 32, death: 31})
+      model.must.eql(new Soul({life: 42, death: 69, existence: true}))
+    })
+
+    it("must set inherited attributes", function() {
+      var obj = Object.create({name: "John"})
+      obj.age = 42
+
+      var model = new Soul
+      model.set(obj).must.eql({name: undefined, age: undefined})
+      model.must.eql(new Soul({name: "John", age: 42}))
+    })
+
+    it("must set undefined attributes and return old", function() {
+      var model = new Soul({age: 13})
+      model.set({name: undefined}).must.eql({name: undefined})
       model.must.have.property("name", undefined)
     })
 
@@ -197,24 +213,6 @@ describe("Soul", function() {
       try { model.set({age: 13}) } catch (ex) { err = ex }
       err.must.be.an.error(TypeError, /not extensible/i)
       model.must.not.have.property("age")
-    })
-
-    describe("given object", function() {
-      it("must return self", function() {
-        var soul = new Soul
-        soul.set({life: 42}).must.equal(soul)
-      })
-
-      it("must set attributes", function() {
-        var soul = new Soul().set({life: 42, death: 69})
-        soul.must.eql(new Soul({life: 42, death: 69}))
-      })
-
-      it("must set inherited attributes", function() {
-        var obj = Object.create({name: "John"})
-        obj.age = 42
-        new Soul().set(obj).must.eql(new Soul({name: "John", age: 42}))
-      })
     })
   })
 

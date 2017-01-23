@@ -26,7 +26,7 @@ Soul.prototype.set = function(attrs) {
 
   var old = diff(this, attrs)
   if (!isEmpty(old)) assign(this, attrs).trigger("change", old, attrs)
-  return this
+  return old
 }
 
 // No Soul.prototype.inspect alias intentionally as inspecting the full
