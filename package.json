@@ -29,7 +29,7 @@
 		"url": "https://github.com/moll/js-soul/blob/master/LICENSE"
 	}],
 
-	"main": "index.js",
+	"main": "soul.js",
 	"scripts": {"test": "make test"},
 
 	"dependencies": {
