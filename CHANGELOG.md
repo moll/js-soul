@@ -1,3 +1,6 @@
+## Unreleased
+- Don't strip out undefined properties in `toJSON` to always return the same structure, but only flattened.
+
 ## 0.13.38 (Jan 24, 2017)
 - ES5ify `mix`.
 

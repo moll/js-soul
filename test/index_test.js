@@ -226,9 +226,9 @@ describe("Soul", function() {
       obj.must.have.own("age")
     })
 
-    it("must not return undefined attributes", function() {
+    it("must return undefined attributes", function() {
       var model = new Soul({age: 42, name: undefined})
-      model.toJSON().must.eql({age: 42})
+      model.toJSON().must.eql({age: 42, name: undefined})
     })
 
     it("must return null attributes", function() {

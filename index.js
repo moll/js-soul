@@ -2,7 +2,6 @@
 var Concert = require("concert")
 var isEmpty = require("oolong").isEmpty
 var map = require("oolong").map
-var reject = require("oolong").reject
 var egal = require("egal")
 var NON_ENUMERABLE = {enumerable: false}
 module.exports = Soul
@@ -29,9 +28,13 @@ Soul.prototype.set = function(attrs) {
   return old
 }
 
-// No Soul.prototype.inspect alias intentionally as inspecting the full
-// object with all enumerable properties is more useful in this case.
-Soul.prototype.toJSON = function() { return reject(this, isUndefined) }
+// Not aliasing Soul.prototype.inspect to toJSON intentionally as inspecting
+// the full object with all enumerable properties is more useful in this case.
+Soul.prototype.toJSON = function() {
+  var obj = {}
+  for (var key in this) obj[key] = this[key]
+  return obj
+}
 
 unenumerate(Soul.prototype)
 
@@ -47,4 +50,3 @@ function unenumerate(obj) {
 
 function assign(a, b) { for (var k in b) a[k] = b[k]; return a }
 function constant(value) { return function() { return value } }
-function isUndefined(value) { return value === undefined }
