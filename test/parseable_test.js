@@ -1,8 +1,7 @@
 var Soul = require("..")
 var Sinon = require("sinon")
-var Parseable = require("../parseable")
 var mix = require("../mix")
-var Model = mix(Soul, Parseable)
+var Model = mix(Soul, require("../parseable"))
 
 describe("Parseable", function() {
   describe("new", function() {
