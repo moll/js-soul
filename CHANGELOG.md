@@ -1,4 +1,4 @@
-## Unreleased
+## 0.13.39 (Feb 26, 2017)
 - Don't strip out undefined properties in `toJSON` to always return the same structure, but only flattened.
 - Adds `SoulSet`.
 
