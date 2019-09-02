@@ -1,4 +1,3 @@
-var O = require("oolong")
 var Soul = require("..")
 var Sinon = require("sinon")
 var demand = require("must")
@@ -33,7 +32,7 @@ describe("Soul", function() {
 
     it("must have given attributes as properties", function() {
       var model = new Soul({name: "John", age: 42})
-      model.must.eql(O.assign(new Soul, {name: "John", age: 42}))
+      model.must.eql(assign(new Soul, {name: "John", age: 42}))
     })
 
     it("must not modify given attributes", function() {
@@ -90,7 +89,7 @@ describe("Soul", function() {
       it("must return a model given attributes", function() {
         var model = new Model({name: "John"})
         model.must.be.an.instanceof(Model)
-        model.must.eql(O.create(Model.prototype, {name: "John"}))
+        model.must.eql(create(Model.prototype, {name: "John"}))
       })
     })
   })
@@ -219,7 +218,7 @@ describe("Soul", function() {
   describe(".prototype.toJSON", function() {
     it("must return attributes as own", function() {
       var model = new Soul({name: "John"})
-      model = O.create(model, {age: 42})
+      model = create(model, {age: 42})
       var obj = model.toJSON()
       obj.must.eql({name: "John", age: 42})
       obj.must.have.own("name")
@@ -237,3 +236,6 @@ describe("Soul", function() {
     })
   })
 })
+
+function assign(a, b) { for (var k in b) a[k] = b[k]; return a }
+function create(prototype, obj) { return assign(Object.create(prototype), obj) }

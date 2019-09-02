@@ -1,7 +1,5 @@
 "use strict"
 var Concert = require("concert")
-var isEmpty = require("oolong").isEmpty
-var map = require("oolong").map
 var egal = require("egal")
 var NON_ENUMERABLE = {enumerable: false}
 module.exports = Soul
@@ -45,8 +43,15 @@ function diff(a, b) {
 }
 
 function unenumerate(obj) {
-  Object.defineProperties(obj, map(obj, constant(NON_ENUMERABLE)))
+  Object.defineProperties(obj, mapValues(obj, constant(NON_ENUMERABLE)))
+}
+
+function mapValues(obj, fn) {
+  var mapped = {}
+  for (var key in obj) mapped[key] = fn(obj[key], key)
+  return mapped
 }
 
 function assign(a, b) { for (var k in b) a[k] = b[k]; return a }
 function constant(value) { return function() { return value } }
+function isEmpty(obj) { for (obj in obj) return false; return true; }
