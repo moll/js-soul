@@ -1,4 +1,4 @@
-## Unreleased
+## 0.14.0 (Sep 3, 2019)
 - Removes `SoulSet`.
 
 ## 0.13.39 (Feb 26, 2017)
