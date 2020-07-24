@@ -1,7 +1,7 @@
 {
-	"name": "@moll/soul",
-	"version": "0.14.0",
-	"description": "",
+	"name": "soul",
+	"version": "1.0.0",
+	"description": "A simple yet extensible mutable model library with attribute comparisons and change events.",
 	"keywords": [
 		"domain",
 		"model",

@@ -1,3 +1,6 @@
+## 1.0.0 (Jul 24, 2020)
+- Redemption with v1.
+
 ## 0.14.0 (Sep 3, 2019)
 - Removes `SoulSet`.
 
